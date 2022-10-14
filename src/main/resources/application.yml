@@ -1,0 +1,92 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: linc-api-server
+  mvc:
+    pathmatch:
+      matching-strategy: ANT_PATH_MATCHER
+  output:
+    ansi:
+      enabled: always
+
+  data:
+    web:
+      pageable:
+        default-page-size: 1000
+        max-page-size: 1000
+  jpa:
+    database-platform: egovframework.kit.linc.config.ConcatH2Dialect
+    properties:
+      hibernate:
+        default_batch_fetch_size: 20
+  session:
+    store-type: jdbc
+    jdbc:
+      initialize-schema: always
+
+
+external:
+  static:
+    url:
+      inbound: /linc-api-server/upload
+      outbound: /images
+
+
+logging:
+  level:
+    root: info
+
+
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: dev
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:tcp://localhost/~/linctest
+    username: sa
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+    database-platform: egovframework.kit.linc.config.ConcatH2Dialect
+
+external:
+  static:
+    url:
+      inbound: /Users/lichee55/tmp/uploads
+      outbound: /images
+---
+
+spring:
+  config:
+    activate:
+      on-profile: prod
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    url: jdbc:mariadb://172.17.0.3:3306/lincdb
+    username: lincdbadmin
+    password: se75407540
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+    database-platform: egovframework.kit.linc.config.ConcatMariaDialect
+
+external:
+  static:
+    url:
+      inbound: /linc-api-server/upload
+      outbound: /images
