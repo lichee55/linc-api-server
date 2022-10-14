@@ -21,13 +21,13 @@ import javax.persistence.Id;
 @AllArgsConstructor
 public class SupportField {
 
-	// 애로기술 요청 시 지도/자문 분야
+    // 애로기술 요청 시 지도/자문 분야
 
-	@Id
-	@Column(name = "id")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-	@Column(name = "name")
-	private String name;
+    @Column(name = "name")
+    private String name;
 }

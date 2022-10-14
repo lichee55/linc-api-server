@@ -12,20 +12,21 @@ import lombok.Data;
 
 public class AddTechCareRequstDTO {
 
-	private List<Long> consultantForm;
-	private List<String> consultantInfo;
-	private List<Long> consultingField;
-	private String consultingFieldEtc;
-	private String detail;
-	private String projectName;
-	private String detailInfo;
-	private String effectiveness;
+    private List<Long> consultantForm;
+    private List<String> consultantInfo;
+    private List<Long> consultingField;
 
-	public static TechCareRequest toEntity(AddTechCareRequstDTO dto) {
+    private String consultingFieldEtc;
+    private String detail;
+    private String projectName;
+    private String detailInfo;
+    private String effectiveness;
 
-		return TechCareRequest.builder().wishMentor(String.join("|", dto.getConsultantInfo())).detail(dto.detail)
-				.requestName(dto.projectName).cooperationTypeEtc(dto.consultingFieldEtc)
-				.expectEffect(dto.getEffectiveness()).status(Status.PENDING).detail(dto.getDetailInfo()).build();
+    public static TechCareRequest toEntity(AddTechCareRequstDTO dto) {
 
-	}
+        return TechCareRequest.builder().wishMentor(String.join("|", dto.getConsultantInfo())).detail(dto.detail)
+                .requestName(dto.projectName).cooperationTypeEtc(dto.consultingFieldEtc)
+                .expectEffect(dto.getEffectiveness()).status(Status.PENDING).detail(dto.getDetailInfo()).build();
+
+    }
 }
